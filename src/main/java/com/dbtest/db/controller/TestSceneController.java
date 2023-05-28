@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import com.dbtest.db.SpringFXMLLoader;
 import com.dbtest.db.model.entity.EmployeeInfo;
+import com.dbtest.db.model.entity.EmployeeInfoDto;
 import com.dbtest.db.model.service.EmployeeInfoService;
 
 import javafx.event.ActionEvent;
@@ -35,40 +36,55 @@ public class TestSceneController {
     private Button allBtn;
 
     @FXML
-    private TableView<EmployeeInfo> datatable;
+    private TableView<EmployeeInfoDto> datatable;
 
     @FXML
-    private TableColumn<EmployeeInfo, Date> annual_paid_leave_report_date_col;
+    private TableColumn<EmployeeInfoDto, Date> annual_paid_leave_report_date_col;
 
     @FXML
-    private TableColumn<EmployeeInfo, Integer> code_col;
+    private TableColumn<EmployeeInfoDto, Integer> code_col;
 
     @FXML
-    private TableColumn<EmployeeInfo, String> department_col;
+    private TableColumn<EmployeeInfoDto, String> department_col;
 
     @FXML
-    private TableColumn<EmployeeInfo, Integer> granted_paid_leave_days_col;
+    private TableColumn<EmployeeInfoDto, Integer> granted_paid_leave_days_col;
 
     @FXML
-    private TableColumn<EmployeeInfo, String> hurigana_col;
+    private TableColumn<EmployeeInfoDto, String> hurigana_col;
 
     @FXML
-    private TableColumn<EmployeeInfo, Date> joindate_col;
+    private TableColumn<EmployeeInfoDto, Date> joindate_col;
 
     @FXML
-    private TableColumn<EmployeeInfo, String> name_col;
+    private TableColumn<EmployeeInfoDto, String> name_col;
 
     @FXML
-    private TableColumn<EmployeeInfo, Date> reference_date_col;
+    private TableColumn<EmployeeInfoDto, Date> reference_date_col;
 
     @FXML
-    private TableColumn<EmployeeInfo, Integer> total_paid_leave_used_days_col;
+    private TableColumn<EmployeeInfoDto, Integer> total_paid_leave_used_days_col;
 
     @FXML
-    private TableColumn<EmployeeInfo, Integer> remaining_paid_leave_days_col;
+    private TableColumn<EmployeeInfoDto, Integer> remaining_paid_leave_days_col;
 
     @FXML
-    private TableColumn<EmployeeInfo, Integer> working_days_col;
+    private TableColumn<EmployeeInfoDto, Integer> working_days_col;
+
+    @FXML
+    private TableColumn<EmployeeInfoDto, String> firstname_col;
+
+    @FXML
+    private TableColumn<EmployeeInfoDto, String> hurigana_first_col;
+
+    @FXML
+    private TableColumn<EmployeeInfoDto, String> hurigana_last_col;
+
+    @FXML
+    private TableColumn<EmployeeInfoDto, Integer> id_col;
+
+    @FXML
+    private TableColumn<EmployeeInfoDto, String> lastname_col;
 
     @FXML
     private Button insertBtn;
@@ -133,35 +149,38 @@ public class TestSceneController {
         assert findCodeBtn != null : "fx:id=\"findCodeBtn\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert findJoinAndDepBtn != null : "fx:id=\"findJoinAndDepBtn\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert fineMultiple != null : "fx:id=\"fineMultiple\" was not injected: check your FXML file 'TestScene.fxml'.";
+        assert firstname_col != null : "fx:id=\"firstname_col\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert granted_paid_leave_days_col != null : "fx:id=\"granted_paid_leave_days_col\" was not injected: check your FXML file 'TestScene.fxml'.";
-        assert hurigana_col != null : "fx:id=\"hurigana_col\" was not injected: check your FXML file 'TestScene.fxml'.";
+        assert hurigana_first_col != null : "fx:id=\"hurigana_first_col\" was not injected: check your FXML file 'TestScene.fxml'.";
+        assert hurigana_last_col != null : "fx:id=\"hurigana_last_col\" was not injected: check your FXML file 'TestScene.fxml'.";
+        assert id_col != null : "fx:id=\"id_col\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert insertBtn != null : "fx:id=\"insertBtn\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert joindate_col != null : "fx:id=\"joindate_col\" was not injected: check your FXML file 'TestScene.fxml'.";
+        assert lastname_col != null : "fx:id=\"lastname_col\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert nameMultiple != null : "fx:id=\"nameMultiple\" was not injected: check your FXML file 'TestScene.fxml'.";
-        assert name_col != null : "fx:id=\"name_col\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert reference_date_col != null : "fx:id=\"reference_date_col\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert remaining_paid_leave_days_col != null : "fx:id=\"remaining_paid_leave_days_col\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert resultDelete != null : "fx:id=\"resultDelete\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert resultFindCode != null : "fx:id=\"resultFindCode\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert resultUpdate != null : "fx:id=\"resultUpdate\" was not injected: check your FXML file 'TestScene.fxml'.";
-        assert total_paid_leave_used_days_col != null : "fx:id=\"total_paid_leave_used_days_col\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert updateBox != null : "fx:id=\"updateBox\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert updateBtn != null : "fx:id=\"updateBtn\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert wdaysMultiple != null : "fx:id=\"wdaysMultiple\" was not injected: check your FXML file 'TestScene.fxml'.";
         assert working_days_col != null : "fx:id=\"working_days_col\" was not injected: check your FXML file 'TestScene.fxml'.";
 
-
-		code_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, Integer>("code"));
-		hurigana_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, String>("hurigana"));
-		name_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, String>("name"));
-		joindate_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, Date>("joinDate"));
-		department_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, String>("department"));
-		working_days_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, Integer>("working_days"));
-		reference_date_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, Date>("reference_date"));
-		annual_paid_leave_report_date_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, Date>("annual_paid_leave_report_date"));
-		granted_paid_leave_days_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, Integer>("granted_paid_leave_days"));
-		remaining_paid_leave_days_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, Integer>("remaining_paid_leave_days"));
-		total_paid_leave_used_days_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfo, Integer>("total_paid_leave_used_days"));
+        id_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, Integer>("id"));
+        code_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, Integer>("code"));
+        joindate_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, Date>("join_date"));
+		hurigana_last_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, String>("hurigana_lastname"));
+		hurigana_first_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, String>("hurigana_firstname"));
+		lastname_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, String>("lastname"));
+		firstname_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, String>("firstname"));
+		department_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, String>("department_name"));
+		working_days_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, Integer>("working_days"));
+		reference_date_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, Date>("reference_date"));
+		annual_paid_leave_report_date_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, Date>("annual_paid_leave_report_date"));
+		granted_paid_leave_days_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, Integer>("granted_paid_leave_days"));
+		remaining_paid_leave_days_col.setCellValueFactory(new PropertyValueFactory<EmployeeInfoDto, Integer>("remaining_paid_leave_days"));
 
     }
 
@@ -171,25 +190,25 @@ public class TestSceneController {
 
     	clearTable();
 
-		Iterable<EmployeeInfo> empinfo = service.selectAll();
+    	Iterable<EmployeeInfoDto> employeeInfoDtoList = service.getAllEmployeeInfoDto();
 
+        for (EmployeeInfoDto model : employeeInfoDtoList) {
+            System.out.println(model.getCode());
+        }
 
+        try {
+        	for(EmployeeInfoDto emp : employeeInfoDtoList) {
+        		System.out.println(emp);
 
-		for(EmployeeInfo emp : empinfo) {
-			System.out.println(emp.getWorking_days());
-			// サンプルデータを1行追加
-			datatable.getItems().add(new EmployeeInfo(emp.getCode()
-													,emp.getJoinDate()
-													,emp.getHurigana()
-													,emp.getName()
-													,emp.getDepartment()
-													,emp.getWorking_days()
-													,emp.getReference_date()
-													,emp.getAnnual_paid_leave_report_date()
-													,emp.getGranted_paid_leave_days()
-													,emp.getTotal_paid_leave_used_days()
-													,emp.getRemaining_paid_leave_days()
-									));
+        		// サンプルデータを1行追加
+        		setTableViewEmployeeInfoDto(emp);
+        	}
+		}catch(Exception e) {
+			e.printStackTrace();
+			if (e.getCause() instanceof InvocationTargetException) {
+				Throwable targetException = ((InvocationTargetException) e.getCause()).getTargetException();
+				targetException.printStackTrace();
+			}
 		}
     }
 
@@ -199,16 +218,18 @@ public class TestSceneController {
     	clearTable();
 
     	EmployeeInfo empinfo = new EmployeeInfo(null
+    			,"XLM99M"
     			,Date.valueOf("2016-04-01")
-    			,"やまだたろう"
-    			,"山田太郎"
-    			,"品質保証部"
+    			,"やまだ"
+    			,"たろう"
+    			,"山田"
+    			,"太郎"
+    			,100
     			,300
     			,Date.valueOf("2016-04-01")
     			,Date.valueOf("2016-04-01")
     	    	,19
-    			,3
-    			,16);
+    			,3);
 
 		try {
 			service.insertEmployeeInfo(empinfo);
@@ -230,24 +251,13 @@ public class TestSceneController {
 
 		try {
 
-			Optional<EmployeeInfo> optional = service.findById(Integer.parseInt(codeBox.getText()));
-			EmployeeInfo empinfo;
+			Optional<EmployeeInfoDto> optional = service.findByIdEmpDto(Integer.parseInt(codeBox.getText()));
+			EmployeeInfoDto empinfo;
 
 			if (optional.isPresent()) {
 			    empinfo = optional.get();
-				datatable.getItems().add(new EmployeeInfo(empinfo.getCode()
-						,empinfo.getJoinDate()
-						,empinfo.getHurigana()
-						,empinfo.getName()
-						,empinfo.getDepartment()
-						,empinfo.getWorking_days()
-						,empinfo.getReference_date()
-						,empinfo.getAnnual_paid_leave_report_date()
-						,empinfo.getGranted_paid_leave_days()
-						,empinfo.getTotal_paid_leave_used_days()
-						,empinfo.getRemaining_paid_leave_days()
-				));
-			} else {
+				datatable.getItems().add(empinfo);
+		} else {
 			    System.out.println("Value was null");
 			}
 
@@ -274,7 +284,7 @@ public class TestSceneController {
 		    return;
 		}
 
-		empinfo.setJoinDate(Date.valueOf("1990-04-01"));
+		empinfo.setJoin_date(Date.valueOf("1990-04-01"));
 
 		try {
 			service.insertEmployeeInfo(empinfo);
@@ -304,47 +314,29 @@ public class TestSceneController {
 
     @FXML
     void findJoinAndDepBtn_OnClick(ActionEvent event) {
-    	Iterable<EmployeeInfo> empinfo = service.findByJoinDateAndDepartment(Date.valueOf("2013-04-02"), "総務部");
+    	Iterable<EmployeeInfoDto> empinfo = service.findByJoinDateAndDepartmentDto(Date.valueOf("2013-04-02"), "総務部");
     	clearTable();
-		for(EmployeeInfo emp : empinfo) {
-			System.out.println(emp.getName());
-			// サンプルデータを1行追加
-			datatable.getItems().add(new EmployeeInfo(emp.getCode()
-													,emp.getJoinDate()
-													,emp.getHurigana()
-													,emp.getName()
-													,emp.getDepartment()
-													,emp.getWorking_days()
-													,emp.getReference_date()
-													,emp.getAnnual_paid_leave_report_date()
-													,emp.getGranted_paid_leave_days()
-													,emp.getTotal_paid_leave_used_days()
-													,emp.getRemaining_paid_leave_days()
-									));
+		for(EmployeeInfoDto emp : empinfo) {
+			System.out.println(emp.getLastname());
+    		// サンプルデータを1行追加
+			setTableViewEmployeeInfoDto(emp);
 		}
     }
 
     @FXML
     void fineMultipleBtn_OnClick(ActionEvent event) {
 
-    	//nameMultiple.getText(), depMultiple.getText(), Integer.parseInt(wdaysMultiple.getText())
-    	Iterable<EmployeeInfo> empinfo = service.findByParams("山田太郎" ,null, null);
+    	// 各nullチェック
+    	String lastname_text = Optional.ofNullable(nameMultiple.getText()).filter(s -> !s.isEmpty()).orElse(null);
+    	String depname_text = Optional.ofNullable(depMultiple.getText()).filter(s -> !s.isEmpty()).orElse(null);
+    	Integer wdays_text = Optional.ofNullable(wdaysMultiple.getText()).filter(s -> !s.isEmpty()).map(Integer::parseInt).orElse(null);
+
+    	Iterable<EmployeeInfoDto> empinfo = service.findByParamsDto(lastname_text , depname_text, wdays_text);
     	clearTable();
-		for(EmployeeInfo emp : empinfo) {
+		for(EmployeeInfoDto emp : empinfo) {
 			System.out.println(emp);
 			// サンプルデータを1行追加
-			datatable.getItems().add(new EmployeeInfo(emp.getCode()
-													,emp.getJoinDate()
-													,emp.getHurigana()
-													,emp.getName()
-													,emp.getDepartment()
-													,emp.getWorking_days()
-													,emp.getReference_date()
-													,emp.getAnnual_paid_leave_report_date()
-													,emp.getGranted_paid_leave_days()
-													,emp.getTotal_paid_leave_used_days()
-													,emp.getRemaining_paid_leave_days()
-									));
+			setTableViewEmployeeInfoDto(emp);
 		}
 
     }
@@ -352,5 +344,22 @@ public class TestSceneController {
     void clearTable() {
     	datatable.getItems().clear();
     	datatable.refresh();
+    }
+
+    void setTableViewEmployeeInfoDto(EmployeeInfoDto emp) {
+		datatable.getItems().add(new EmployeeInfoDto(emp.getId(),
+				emp.getCode(),
+				emp.getJoin_date(),
+				emp.getHurigana_lastname(),
+				emp.getHurigana_firstname(),
+				emp.getLastname(),
+				emp.getFirstname(),
+				emp.getDepartment_name(),
+				emp.getWorking_days(),
+				emp.getReference_date(),
+				emp.getAnnual_paid_leave_report_date(),
+				emp.getGranted_paid_leave_days(),
+				emp.getRemaining_paid_leave_days()
+				));
     }
 }

@@ -7,21 +7,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dbtest.db.controller.TestSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dbtest.db.controller.TestSceneController">
    <children>
-      <TableView fx:id="datatable" layoutX="7.0" layoutY="7.0" prefHeight="211.0" prefWidth="998.0">
+      <TableView fx:id="datatable" layoutX="14.0" layoutY="14.0" prefHeight="211.0" prefWidth="1087.0">
         <columns>
-          <TableColumn fx:id="code_col" prefWidth="75.0" text="社員コード" />
-          <TableColumn fx:id="joindate_col" prefWidth="75.0" text="入社日" />
-            <TableColumn fx:id="hurigana_col" prefWidth="75.0" text="ふりがな" />
-            <TableColumn fx:id="name_col" prefWidth="75.0" text="名前" />
-            <TableColumn fx:id="department_col" prefWidth="75.0" text="部署" />
-            <TableColumn fx:id="working_days_col" prefWidth="87.77777099609375" text="所定労働日数" />
-            <TableColumn fx:id="reference_date_col" prefWidth="93.99993896484375" text="基準日" />
-            <TableColumn fx:id="annual_paid_leave_report_date_col" prefWidth="91.7777099609375" text="年休簿作成日" />
-            <TableColumn fx:id="granted_paid_leave_days_col" prefWidth="110.888916015625" text="有給休暇付与日数" />
-            <TableColumn fx:id="total_paid_leave_used_days_col" prefWidth="126.66668701171875" text="累積有給休暇使用日数" />
-            <TableColumn fx:id="remaining_paid_leave_days_col" prefWidth="101.111083984375" text="有給休暇残日" />
+            <TableColumn fx:id="id_col" prefWidth="50.00000190734863" text="登録ID" />
+          <TableColumn fx:id="code_col" prefWidth="78.6666488647461" text="社員コード" />
+          <TableColumn fx:id="joindate_col" prefWidth="85.99996948242188" text="入社日" />
+            <TableColumn fx:id="hurigana_last_col" prefWidth="70.00001525878906" text="ふりがな名字" />
+            <TableColumn fx:id="hurigana_first_col" prefWidth="78.0" text="ふりがな名前" />
+            <TableColumn fx:id="lastname_col" prefWidth="75.0" text="名字" />
+            <TableColumn fx:id="firstname_col" prefWidth="76.6666259765625" text="名前" />
+            <TableColumn fx:id="department_col" prefWidth="69.33328247070312" text="部署名" />
+            <TableColumn fx:id="working_days_col" prefWidth="86.666748046875" text="所定労働日数" />
+            <TableColumn fx:id="reference_date_col" prefWidth="88.66668701171875" text="基準日" />
+            <TableColumn fx:id="annual_paid_leave_report_date_col" prefWidth="99.33331298828125" text="年休簿作成日" />
+            <TableColumn fx:id="granted_paid_leave_days_col" prefWidth="113.3333740234375" text="有給休暇付与日数" />
+            <TableColumn fx:id="remaining_paid_leave_days_col" prefWidth="83.99993896484375" text="有給休暇残日" />
         </columns>
       </TableView>
       <Button fx:id="allBtn" layoutX="14.0" layoutY="233.0" mnemonicParsing="false" onAction="#allBtn_OnClick" prefHeight="32.0" prefWidth="87.0" text="全取得" />
@@ -38,7 +40,7 @@
       <Label fx:id="resultDelete" layoutX="309.0" layoutY="422.0" prefHeight="17.0" prefWidth="117.0" text="←社員コード入力" />
       <Button fx:id="findJoinAndDepBtn" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" onAction="#findJoinAndDepBtn_OnClick" prefHeight="32.0" prefWidth="299.0" text="入社日が2013-04-02かつ総務部のデータを検索します" />
       <Button fx:id="fineMultiple" layoutX="14.0" layoutY="497.0" mnemonicParsing="false" onAction="#fineMultipleBtn_OnClick" prefHeight="32.0" prefWidth="117.0" text="複数条件で検索" />
-      <Label layoutX="239.0" layoutY="504.0" prefHeight="17.0" prefWidth="45.0" text="←名前" />
+      <Label layoutX="239.0" layoutY="504.0" prefHeight="17.0" prefWidth="45.0" text="←名字" />
       <TextField fx:id="nameMultiple" layoutX="146.0" layoutY="500.0" prefHeight="25.0" prefWidth="81.0" />
       <TextField fx:id="depMultiple" layoutX="293.0" layoutY="500.0" prefHeight="25.0" prefWidth="81.0" />
       <Label layoutX="388.0" layoutY="504.0" prefHeight="17.0" prefWidth="45.0" text="←部署" />

@@ -3,10 +3,9 @@ package com.dbtest.db.model.service;
 import java.sql.Date;
 import java.util.Optional;
 
-import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.repository.query.Param;
-
+import com.dbtest.db.model.entity.Department;
 import com.dbtest.db.model.entity.EmployeeInfo;
+import com.dbtest.db.model.entity.EmployeeInfoDto;
 
 
 public interface EmployeeInfoService {
@@ -15,8 +14,14 @@ public interface EmployeeInfoService {
 	Optional<EmployeeInfo> findById(Integer code);
 	void deleteById(Integer code);
 	boolean existsById(Integer code);
-    @Query("SELECT e FROM EmployeeInfo e WHERE e.joinDate = :joinDate AND e.department = :department")
-    Iterable<EmployeeInfo> findByJoinDateAndDepartment(@Param("joinDate") Date joinDate, @Param("department") String department);
+	Iterable<EmployeeInfo> findByJoinDateAndDepartment(Date joinDate, Integer department_number);
+    Iterable<EmployeeInfo> findByParams(String name, Integer department_number, Integer working_days);
 
-    Iterable<EmployeeInfo> findByParams(String name, String department, Integer working_days);
+    Iterable<Department> selectDepAll();
+    Optional<Department> findByDepartmentNumber(Integer department_number);
+    Iterable<EmployeeInfoDto> getAllEmployeeInfoDto();
+    Optional<EmployeeInfoDto> findByIdEmpDto(Integer code);
+    Iterable<EmployeeInfoDto> findByJoinDateAndDepartmentDto(Date joinDate, String department_name);
+    Iterable<EmployeeInfoDto> findByParamsDto(String name, String department_name, Integer working_days);
+
 }

@@ -3,7 +3,6 @@ package com.dbtest.db.model.entity;
 import java.sql.Date;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,17 +12,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeInfo {
-	/* 社員番号 */	@Id
-	private Integer code;
+	/* 登録ID */
+	@Id
+	private Integer id;
+	/* 社員コード */
+	private String code;
 	/* 入社日 */
-	@Column(value="join_date")
-	private Date joinDate;
-	/* ふりがな */
-	private String hurigana;
+	private Date join_date;
+	/* ふりがな名字 */
+	private String hurigana_lastname;
+	/* ふりがな名前 */
+	private String hurigana_firstname;
+	/* 名字 */
+	private String lastname;
 	/* 名前 */
-	private String name;
+	private String firstname;
 	/* 部署名 */
-	private String department;
+	private Integer department_number;
 	/* 所定労働日数 */
 	private Integer working_days;
 	/* 有給休暇発生日（基準日） */
@@ -32,8 +37,6 @@ public class EmployeeInfo {
 	private Date annual_paid_leave_report_date;
 	/* 有給休暇付与日数 */
 	private Integer granted_paid_leave_days;
-	/* 有給休暇の使用トータル日数 */
-	private Integer total_paid_leave_used_days;
 	/* 有給休暇残数 */
 	private Integer remaining_paid_leave_days;
 }
